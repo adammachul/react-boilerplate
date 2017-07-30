@@ -23,7 +23,7 @@ const getPlugins = () => {
         plugins.push(
             new webpack.HotModuleReplacementPlugin(),
             new webpack.NamedModulesPlugin(),
-            new webpack.NoErrorsPlugin()
+            new webpack.NoEmitOnErrorsPlugin()
         )
     } else {
         plugins.push(

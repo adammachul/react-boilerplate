@@ -9,7 +9,7 @@ import configureStore from './redux/store';
 const initialState = window.__INITIAL_STATE__;
 const history = createHistory();
 const store = configureStore(history, initialState);
-const rootElement = document.getElementById('react-view');
+const rootElement = document.getElementById('root');
 
 const renderApp = () => {
     const App = require('./containers/App').default;

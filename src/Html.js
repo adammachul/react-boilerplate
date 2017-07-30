@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import serialize from 'serialize-javascript';
 import _ from 'lodash';
 
-const html = ({store, htmlContent }) => {
+const Html = ({store, htmlContent }) => {
     const head = Helmet.renderStatic();
     const attrs = head.htmlAttributes.toComponent();
     const { lang, ...rest } = attrs || {};

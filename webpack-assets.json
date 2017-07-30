@@ -1,0 +1,10 @@
+{
+  "javascript": {
+    "main": "/assets/main.js"
+  },
+  "styles": {},
+  "assets": {},
+  "webpack": {
+    "version": "3.4.1"
+  }
+}
