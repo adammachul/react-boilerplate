@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> renders 1`] = `
+<div>
+  <h1>
+     Home Pageeee 
+  </h1>
+</div>
+`;
