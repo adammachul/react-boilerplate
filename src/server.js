@@ -4,6 +4,7 @@ import React from 'react';
 import compression from 'compression';
 import hpp from 'hpp';
 import helmet from 'helmet';
+import morgan from 'morgan';
 
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
@@ -21,6 +22,8 @@ const app = express();
 app.use(helmet());
 app.use(hpp());
 app.use(compression());
+app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
+//app.use express.static jak bedzie trzeba
 
 if (__DEV__) {
     const webpack = require('webpack');

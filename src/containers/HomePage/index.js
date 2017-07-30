@@ -4,7 +4,7 @@ import styles from './styles.scss';
 
 const HomePage = () => (
     <div className={styles.HomePage}>
-        <h1> Home Pagee </h1>
+        <h1> Home Page </h1>
     </div>
 )
 
