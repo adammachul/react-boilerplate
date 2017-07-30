@@ -30,6 +30,19 @@ module.exports = {
                     babelrc: false,
                     presets: [['es2015', { modules: false }], 'react', 'stage-0']
                 }
+            },
+            {
+                test: /\.(css|scss|sass)$/,
+                use: [
+                    {
+                        loader: 'css-loader/locals',
+                        options: {
+                            modules: true,
+                            context: path.join(process.cwd(), './src'),
+                            localIdentName: '[hash:base64:5]',
+                        }
+                    }
+                ]
             }
         ]
     },

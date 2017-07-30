@@ -6,6 +6,8 @@ import _ from 'lodash';
 import config from '../../config';
 import routes from '../../routes';
 
+import '../../global/normalize.css';
+
 const App = () => {
 
     const routeWithSubRoutes = route => (

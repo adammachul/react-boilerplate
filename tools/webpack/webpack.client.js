@@ -1,15 +1,24 @@
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isDev = nodeEnv !== 'production';
+
+const { vendor } = require('./config');
 
 const WebpackIsomorphicTools = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicTools = new WebpackIsomorphicTools(require('./WIT.config')).development(isDev);
 
 const getPlugins = () => {
     const plugins = [
+        new ExtractTextPlugin({
+            filename: '[name].[contenthash:8].css',
+            allChunks: true,
+            disable: isDev,
+            ignoreOrder: true,
+        }),
         new webpack.EnvironmentPlugin({ NODE_ENV: JSON.stringify(nodeEnv)}),
         new webpack.DefinePlugin({
             __CLIENT__: true,
@@ -27,7 +36,11 @@ const getPlugins = () => {
         )
     } else {
         plugins.push(
-            new BabiliPlugin()
+            new BabiliPlugin(),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                minChunks: Infinity
+            })
         )
     }
 
@@ -41,6 +54,13 @@ const getEntry = () => {
         'webpack-hot-middleware/client?reload=true',
         './src/client.js',
     ];
+
+    if (!isDev) {
+        entry = {
+            main: './src/client.js',
+            vendor,
+        }
+    }
 
     return entry;
 }
@@ -71,6 +91,65 @@ module.exports = {
                     presets: [['es2015', { modules: false }], 'react', 'stage-0'],
                     plugins: ['react-hot-loader/babel'],
                 }
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: true,
+                                modules: true,
+                                context: path.join(process.cwd(), './src'),
+                                localIdentName: isDev ? '[name]__[local].[hash:base64:5]' : '[hash:base64:5]',
+                                minimize: !isDev,
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: true,
+                            }
+                        }
+
+                    ]
+                })
+            },
+            {
+                test: /\.(scss|sass)$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 2,
+                                sourceMap: true,
+                                modules: true,
+                                context: path.join(process.cwd(), './src'),
+                                localIdentName: isDev ? '[name]__[local].[hash:base64:5]' : '[hash:base64:5]',
+                                minimize: !isDev,
+                            }
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                sourceMap: true,
+                            }
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                outputStyle: 'expanded',
+                                sourceMap: true,
+                                sourceMapContents: !isDev,
+                            }
+                        }
+                    ]
+                })
             },
             {
                 test: webpackIsomorphicTools.regularExpression('images'),

@@ -4,6 +4,30 @@ module.exports = {
     assets: {
         images: {
             extensions: ['png', 'jpg', 'gif', 'ico', 'svg']
+        },
+        styleModules: {
+            extensions: ['css', 'scss'],
+            filter: (module, regex, options, log) => {
+                if (options.development) {
+                    return WebpackIsomorphicTools.styleLoaderFilter(module, regex, options, log);
+                }
+
+                return regex.test(module.name);
+            },
+            path: (module, options, log) => {
+                if (options.development) {
+                    return WebpackIsomorphicTools.styleLoaderPathExtractor(module, options, log);
+                }
+
+                return module.name;
+            },
+            parser: (module, options, log) => {
+                if (options.development) {
+                    return WebpackIsomorphicTools.cssModulesLoaderParser(module, options, log);
+                }
+
+                return module.source;
+            }
         }
-    }
+    },
 }

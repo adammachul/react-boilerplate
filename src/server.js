@@ -1,6 +1,9 @@
 import path from 'path';
 import express from 'express';
 import React from 'react';
+import compression from 'compression';
+import hpp from 'hpp';
+import helmet from 'helmet';
 
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
@@ -15,6 +18,9 @@ import { port, host } from './config';
 
 const app = express();
 
+app.use(helmet());
+app.use(hpp());
+app.use(compression());
 
 if (__DEV__) {
     const webpack = require('webpack');
