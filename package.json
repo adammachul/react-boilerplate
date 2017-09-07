@@ -3,16 +3,20 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
-    "private": "true",
+    "private": true,
     "dependencies": {
         "babel-polyfill": "^6.23.0",
+        "bcryptjs": "^2.4.3",
         "compression": "^1.7.0",
         "express": "^4.15.3",
         "helmet": "^3.8.1",
         "history": "^4.6.3",
         "hpp": "^0.2.2",
         "lodash": "^4.17.4",
+        "mongoose": "^4.11.9",
         "morgan": "^1.8.2",
+        "passport": "^0.4.0",
+        "passport-local": "^1.0.0",
         "prop-types": "^15.5.10",
         "react": "^15.6.1",
         "react-dom": "^15.6.1",
@@ -70,7 +74,9 @@
         "test:watch": "yarn test --watch",
         "clean:all": "yarn clean:client && yarn clean:server",
         "clean:client": "better-npm-run clean:client",
-        "clean:server": "better-npm-run clean:server"
+        "clean:server": "better-npm-run clean:server",
+        "db": "mongod --dbpath db --port 27018",
+        "db:show": "mongo --port 27018"
     },
     "betterScripts": {
         "start": {
@@ -115,5 +121,4 @@
             "stage-0"
         ]
     }
-
 }

@@ -9,7 +9,7 @@
     },
     "./src/containers/HomePage/styles.scss": {
       "HomePage": "styles__HomePage-2JJa5",
-      "_style": ".styles__HomePage-2JJa5 {\n  color: #a0e;\n}\n"
+      "_style": ".styles__HomePage-2JJa5 {\n  color: #D31F10;\n}\n"
     }
   },
   "webpack": {

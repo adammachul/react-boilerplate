@@ -1,3 +1,4 @@
 # exclude directories
 /node_modules/
 /build/
+/db/
