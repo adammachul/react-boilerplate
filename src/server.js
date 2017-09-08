@@ -16,11 +16,11 @@ import configureStore from './redux/store';
 import Html from './Html';
 import App from './containers/App';
 import routes from './routes';
-import dummyUsers from './models/dummyUsers';
-import dummyPosts from './models/dummyPosts';
+import populateDatabase from './models/populateDatabase';
 import { port, host } from './config';
 
 import posts from './serverRoutes/postRoutes';
+import users from './serverRoutes/userRoutes';
 
 /**
  * Create Express server
@@ -48,8 +48,9 @@ mongoose.connect('mongodb://localhost:27018/test', { useMongoClient: true }, (er
     }
 
     // Feed some dummy data in DB
-    dummyPosts();
-    dummyUsers();
+    // dummyPosts();
+    // dummyUsers();
+    populateDatabase();
 });
 
 /**
@@ -62,6 +63,7 @@ app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
 //app.use express.static jak bedzie trzeba
 
 app.use('/api', posts);
+app.use('/users', users);
 
 if (__DEV__) {
     const webpack = require('webpack');

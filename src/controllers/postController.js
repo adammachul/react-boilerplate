@@ -7,7 +7,6 @@ import Post from '../models/Post';
  * @returns void
  */
 export function getPosts(req, res) {
-    console.log(req.user);
     Post.find().sort('-dateAdded').exec((err, posts) => {
         if (err) {
             res.status(500).send(err);

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         index: { unique: true }
     },
-    // password: String,
+    password: String,
     // passwordResetToken: String,
     // passwordResetExpires: Date,
 
@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
         gender: String,
         location: String,
         website: String,
-        picture: String
+        picture: String,
+        posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
     }
 }, { timestamps: true });
 
