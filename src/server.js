@@ -6,6 +6,9 @@ import hpp from 'hpp';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
+import expressValidator from 'express-validator';
+import flash from 'express-flash';
+import session from 'express-session';
 
 import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
@@ -18,6 +21,7 @@ import App from './containers/App';
 import routes from './routes';
 import populateDatabase from './models/populateDatabase';
 import { port, host } from './config';
+import passport from 'passport';
 
 import posts from './serverRoutes/postRoutes';
 import users from './serverRoutes/userRoutes';
@@ -56,6 +60,14 @@ mongoose.connect('mongodb://localhost:27018/test', { useMongoClient: true }, (er
 /**
  * Express configuration
  */
+app.use(expressValidator());
+app.use(session({
+    secret: 'moj sekret',
+    cookie:{ maxAge: 60000 } 
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(helmet());
 app.use(hpp());
 app.use(compression());

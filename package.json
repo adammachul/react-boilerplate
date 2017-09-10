@@ -9,6 +9,9 @@
         "bcryptjs": "^2.4.3",
         "compression": "^1.7.0",
         "express": "^4.15.3",
+        "express-flash": "git://github.com/RGBboy/express-flash.git",
+        "express-session": "^1.15.5",
+        "express-validator": "^4.1.1",
         "helmet": "^3.8.1",
         "history": "^4.6.3",
         "hpp": "^0.2.2",
@@ -29,6 +32,7 @@
         "react-router-redux": "next",
         "redux": "^3.7.2",
         "serialize-javascript": "^1.4.0",
+        "validator": "^8.1.0",
         "webpack-isomorphic-tools": "^3.0.3"
     },
     "devDependencies": {

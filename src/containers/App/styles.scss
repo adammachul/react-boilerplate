@@ -1,0 +1,33 @@
+// Regular
+@font-face {
+    font-family: 'Nunito';
+    src: url('../../global/fonts/Nunito-Regular.ttf');
+}
+
+// Logo
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../../global/fonts/Pacifico-Regular.ttf');
+}
+
+// Logo 2
+@font-face {
+    font-family: 'Indie Flower';
+    src: url('../../global/fonts/IndieFlower.ttf');
+}
+
+// Logo 3
+@font-face {
+    font-family: 'LibreBaskerville';
+    src: url('../../global/fonts/LibreBaskerville-Bold.ttf');
+}
+
+// Logo 4
+@font-face {
+    font-family: 'Lobster';
+    src: url('../../global/fonts/Lobster-Regular.ttf');
+}
+
+body {
+    font-family: 'Nunito';
+}

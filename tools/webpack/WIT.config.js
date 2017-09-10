@@ -5,6 +5,9 @@ module.exports = {
         images: {
             extensions: ['png', 'jpg', 'gif', 'ico', 'svg']
         },
+        fonts: {
+            extensions: ['eot', 'ttf', 'woff', 'woff2']
+        },
         styleModules: {
             extensions: ['css', 'scss'],
             filter: (module, regex, options, log) => {

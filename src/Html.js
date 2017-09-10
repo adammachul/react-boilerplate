@@ -36,7 +36,8 @@ const Html = ({store, htmlContent }) => {
                         <style
                             dangerouslySetInnerHTML={{ __html:
                                 require('./global/normalize.css')._style +
-                                require('./containers/HomePage/styles.scss')._style,
+                                require('./containers/HomePage/styles.scss')._style +
+                                require('./containers/App/styles.scss')._style,
                             }}
                         />
                         : null

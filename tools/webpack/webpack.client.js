@@ -152,6 +152,11 @@ module.exports = {
                 })
             },
             {
+                test: /\.(woff2?|ttf|eot|svg)$/,
+                loader: 'url-loader',
+                options: { limit: 10000 },
+            },
+            {
                 test: webpackIsomorphicTools.regularExpression('images'),
                 use: [
                     {

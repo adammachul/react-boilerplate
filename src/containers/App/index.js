@@ -7,6 +7,8 @@ import config from '../../config';
 import routes from '../../routes';
 
 import '../../global/normalize.css';
+// import '../../global/globalRules.scss';
+import './styles.scss';
 
 const App = () => {
 
